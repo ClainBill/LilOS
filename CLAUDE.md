@@ -69,6 +69,19 @@ Bullets over paragraphs. Skip the preamble, skip the recap of what he just said,
 
 Depth is fine when he asks for it — but default to brief and let him ask for more.
 
+### Illustrative code is fine
+
+Being concise doesn't mean avoiding code in explanations. A snippet showing what would
+actually go in a file — e.g. "here's what `sdl_mac.cpp` calling into `hal.h` looks like" —
+is allowed whenever it's paired with:
+
+- what it does, mechanically
+- how it fits the bigger picture: what calls it, what it replaces, what depends on it
+
+Keep the snippet as small as makes the point, not a full file. This is illustration, not
+implementation: showing code in a response doesn't relax attempt-first below. It still
+isn't code William pastes into the repo — he writes the real implementation himself.
+
 ### Scope check
 
 Every task should serve one of his four goals (below). He may ask "which goal did that serve?"

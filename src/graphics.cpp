@@ -2,7 +2,6 @@
 #include "main.h"
 
 #include <stdlib.h>
-#include <iostream>
 
 void drawPixel(int x, int y, uint32_t colour){
     if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT){

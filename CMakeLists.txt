@@ -96,6 +96,7 @@ set(LILOS_SOURCES
     src/graphics.cpp
     src/text.cpp
     src/fonts/TI83Font5x7.cpp
+    platform/sdl_mac.cpp
 )
 
 

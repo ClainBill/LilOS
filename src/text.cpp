@@ -4,7 +4,6 @@
 #include "graphics.h"
 
 #include <string_view>
-#include <iostream>
 
 void printChar(int x, int y, char output_char, const Font& font, uint32_t colour){
     for (int j = 0; j < font.height; j++){
