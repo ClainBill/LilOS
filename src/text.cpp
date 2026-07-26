@@ -1,7 +1,7 @@
 #include "text.h"
 #include "main.h"
-#include "fonts/fonts.h"
-#include "graphic_lib.h"
+#include "fonts.h"
+#include "graphics.h"
 
 #include <string_view>
 #include <iostream>

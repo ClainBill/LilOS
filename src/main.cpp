@@ -1,6 +1,6 @@
 #include "main.h"
-#include "graphic_lib.h"
-#include "fonts/fonts.h"
+#include "graphics.h"
+#include "fonts.h"
 #include "text.h"
 
 #include <SDL2/SDL.h>

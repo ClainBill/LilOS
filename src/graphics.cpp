@@ -1,4 +1,4 @@
-#include "graphic_lib.h"
+#include "graphics.h"
 #include "main.h"
 
 #include <stdlib.h>
