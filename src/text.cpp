@@ -1,10 +1,9 @@
 #include "text.h"
 #include "main.h"
-#include "fonts/fonts.h"
-#include "graphic_lib.h"
+#include "fonts.h"
+#include "graphics.h"
 
 #include <string_view>
-#include <iostream>
 
 void printChar(int x, int y, char output_char, const Font& font, uint32_t colour){
     for (int j = 0; j < font.height; j++){
