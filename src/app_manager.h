@@ -12,7 +12,7 @@ private:
 public:
     ~AppManager();
     void openApp(App* app, bool grabFocus = true);
-    void handleInput(hal::KeyEvent event);
+    void handleInput();
     void update(float deltaTime);
     void render();
     void setFocus(App* focusApp);

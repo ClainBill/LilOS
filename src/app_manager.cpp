@@ -19,9 +19,9 @@ void AppManager::setFocus(App* focusApp){
     focusedApp = focusApp;
 }
 
-void AppManager::handleInput(hal::KeyEvent event) {
+void AppManager::handleInput() {
     // Only the focused app sees input
-    if (focusedApp) focusedApp->handleInput(event);
+    if (focusedApp) focusedApp->handleInput();
 }
 
 void AppManager::update(float deltaTime) {
