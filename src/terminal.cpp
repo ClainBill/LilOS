@@ -1,0 +1,49 @@
+#include "terminal.h"
+#include "graphics.h"
+#include "text.h"
+#include "app.h"
+#include "fonts.h"
+
+// Below are literally only used for printing the fps rn
+#include <charconv>  // std::to_chars
+#include <string_view>
+
+#include <iostream>
+
+
+Terminal::Terminal(int w, int h) : width(w), height(h){
+    appName = "Terminal";
+}
+
+Terminal::~Terminal(){}
+
+void Terminal::update(float deltaTime){
+    return;
+}
+void Terminal::render() {
+    char buffer[32] = "FPS: ";
+    int dt = hal::getDeltaTime();
+    float fps = 1000.0f / dt;
+
+    // Convert int/float directly into the buffer array starting after "FPS: "
+    auto [ptr, ec] = std::to_chars(buffer + 5, buffer + sizeof(buffer), static_cast<int>(fps));
+
+    if (ec == std::errc{}) {
+        // Construct a string_view using the exact length of the valid character data
+        std::string_view fpsView(buffer, ptr - buffer);
+        
+        printString(fpsX, fpsY, fpsView, TI83Font5x7);
+    }
+}
+
+void Terminal::handleInput(hal::KeyEvent& e){
+    if (e.key == hal::Key::Up){
+        fpsY -= 5 * hal::getDeltaTime();
+    } else if (e.key == hal::Key::Down){
+        fpsY += 5 * hal::getDeltaTime();
+    } else if (e.key == hal::Key::Left){
+        fpsX -= 5 * hal::getDeltaTime() ;
+    } else if (e.key == hal::Key::Right){
+        fpsX += 5 * hal::getDeltaTime();
+    }
+}

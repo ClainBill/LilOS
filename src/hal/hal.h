@@ -11,4 +11,5 @@ namespace hal {
     enum class Key { None, Char, Enter, Backspace, Escape, Tab, Left, Right, Up, Down };
     struct KeyEvent { Key key; char ch; };
     bool pollKey(KeyEvent& out);
+    float getDeltaTime();
 }
