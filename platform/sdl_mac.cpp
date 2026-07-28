@@ -9,10 +9,13 @@ namespace {
     SDL_Renderer* renderer;
     SDL_Texture* texture;
 
-    // initialise SDL event
-    SDL_Event event;
     int SDLwidth;
     bool quit = false;
+
+    // time and deltatime
+    uint64_t lastFrameTime = 0;
+    float deltaTime = 0.0f;
+
 }
 
 
@@ -23,6 +26,11 @@ void hal::present(const uint32_t* framebuffer){
         SDL_RenderClear(renderer);
         SDL_RenderCopy(renderer, texture, nullptr, nullptr);
         SDL_RenderPresent(renderer);
+
+        // update deltatime
+        uint64_t currentTime = SDL_GetTicks64();
+        deltaTime = (currentTime - lastFrameTime) / 1000.0f; // convert to ms
+        lastFrameTime = currentTime;
 }
 
 
@@ -40,17 +48,21 @@ bool hal::pollKey(KeyEvent& out){
                 case SDLK_RETURN:    out = {Key::Enter, 0};     return true;
                 case SDLK_BACKSPACE: out = {Key::Backspace, 0}; return true;
                 case SDLK_ESCAPE:    out = {Key::Escape, 0};    return true;
+                case SDLK_TAB:       out = {Key::Tab, 0};       return true;
                 case SDLK_LEFT:      out = {Key::Left, 0};      return true;
-                // ...
+                case SDLK_RIGHT:     out = {Key::Right, 0};     return true;
+                case SDLK_UP:        out = {Key::Up, 0};        return true;
+                case SDLK_DOWN:      out = {Key::Down, 0};      return true;
+                default: break;
             }
         }
     }
     return false;
 }
 
-bool hal::quitRequested(){
-    return quit;
-}
+float hal::getDeltaTime() {return deltaTime;}
+bool hal::quitRequested() {return quit;}
+
 
 
 // create a cleanupSDL() void()
@@ -65,6 +77,7 @@ void hal::shutdown(){
 // Initialise the window and SDL objects
 void hal::init(int width, int height) {
     SDLwidth = width;
+    lastFrameTime = SDL_GetTicks64();
 
     // Check if could initialise a video
     if (SDL_Init(SDL_INIT_VIDEO) != 0){

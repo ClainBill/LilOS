@@ -92,18 +92,21 @@ find_package(SDL2 REQUIRED)
 # Listing files by hand means adding one is a visible line in your diff, which
 # a reviewer can see. Cost: one line per file. Worth it.
 set(LILOS_SOURCES
+    platform/sdl_mac.cpp
     src/main.cpp
     src/graphics.cpp
     src/text.cpp
     src/fonts/TI83Font5x7.cpp
-    platform/sdl_mac.cpp
+    src/app_manager.cpp
+    src/terminal.cpp
 )
 
 
 # --- The executable ----------------------------------------------------------
 # A "target" is one thing CMake knows how to build. This declares a target named
 # lilos, built from those sources. The binary lands at build/lilos.
-add_executable(lilos ${LILOS_SOURCES})
+add_executable(lilos ${LILOS_SOURCES}
+    src/app.h)
 
 
 # --- Include directories -----------------------------------------------------
