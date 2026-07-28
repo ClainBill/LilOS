@@ -15,7 +15,7 @@ public:
 
     void update(float deltaTime) override;
     void render() override;
-    void handleInput(hal::KeyEvent& e) override;
+    void handleInput() override;
 
 private:
     // Terminal specific variables (cursor blink timer, text buffer, etc.)
@@ -23,6 +23,6 @@ private:
     int width;
     int height;
 
-    int fpsX = 200;
-    int fpsY = 220;
+    float fpsX = 200;
+    float fpsY = 220;
 };

@@ -18,7 +18,7 @@ public:
     virtual void update(float deltaTime) = 0;
     virtual void render() = 0;
     
-    virtual void handleInput(hal::KeyEvent& e) = 0;
+    virtual void handleInput() = 0;
 
     // Maybe a void for delete?
 

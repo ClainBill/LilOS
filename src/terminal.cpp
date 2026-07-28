@@ -22,7 +22,7 @@ void Terminal::update(float deltaTime){
 }
 void Terminal::render() {
     char buffer[32] = "FPS: ";
-    int dt = hal::getDeltaTime();
+    float dt = hal::getDeltaTime();
     float fps = 1000.0f / dt;
 
     // Convert int/float directly into the buffer array starting after "FPS: "
@@ -32,18 +32,18 @@ void Terminal::render() {
         // Construct a string_view using the exact length of the valid character data
         std::string_view fpsView(buffer, ptr - buffer);
         
-        printString(fpsX, fpsY, fpsView, TI83Font5x7);
+        printString((int)fpsX, (int)fpsY, fpsView, TI83Font5x7);
     }
 }
 
-void Terminal::handleInput(hal::KeyEvent& e){
-    if (e.key == hal::Key::Up){
-        fpsY -= 5 * hal::getDeltaTime();
-    } else if (e.key == hal::Key::Down){
-        fpsY += 5 * hal::getDeltaTime();
-    } else if (e.key == hal::Key::Left){
-        fpsX -= 5 * hal::getDeltaTime() ;
-    } else if (e.key == hal::Key::Right){
-        fpsX += 5 * hal::getDeltaTime();
+void Terminal::handleInput(){
+    if (hal::isKeyPressed(hal::Key::Up)){
+        fpsY -= 10 * hal::getDeltaTime();
+    }  if (hal::isKeyPressed(hal::Key::Down)){
+        fpsY += 10 * hal::getDeltaTime();
+    }  if (hal::isKeyPressed(hal::Key::Left)){
+        fpsX -= 10 * hal::getDeltaTime() ;
+    }  if (hal::isKeyPressed(hal::Key::Right)){
+        fpsX += 10 * hal::getDeltaTime();
     }
 }

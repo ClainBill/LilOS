@@ -9,6 +9,8 @@
 #include <cstring>
 #include <cstdint>
 
+#include <iostream>
+
 
 // Constants
 const int WIDTH = 320;
@@ -33,17 +35,23 @@ int main() {
     // Setup clear framebuffer
     std::memset(framebuffer, 0, WIDTH * HEIGHT * sizeof(uint32_t));
     
-    // main app loop
     bool running = true;
     hal::KeyEvent event;
 
+    // Main OS loop
     while (running){
         // Handle inputs!
-        while (hal::pollKey(event)) {
-            if (event.key == hal::Key::Escape) running = false;
-            appManager.handleInput(event);
-        }
-        if (hal::quitRequested()) running = false;
+        hal::updateInput();
+
+        // This is what polling for typing would loook like
+        // hal::CharEvent charE;
+        // while (hal::pollCharEvent(charE)){
+        //     std::cout << charE.ch << std::endl;
+        // }
+
+        // Check if we want to quit and then signal app in focus to handle input
+        if (hal::isKeyPressed(hal::Key::Escape)) running = false;
+        appManager.handleInput();
 
         // Clear framebuffer
         std::memset(framebuffer, 0, WIDTH * HEIGHT * sizeof(uint32_t));
