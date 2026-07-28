@@ -11,5 +11,14 @@ The python [font-to-bitmap tool](tools/fontgen.py) requires PIL and TTFont.
 - [x] Basic shape renderer
 - [x] Text char and string renderer
 - [x] SDL2 hardware abstraction layer
-- [ ] Dynamic rendering (using input to move and draw things)
-- [ ] A mini console for inputting our own commands
+- [x] Dynamic rendering (using input to move and draw things)
+- [x] App class structure and AppManager class
+- [ ] A terminal for inputting our own commands
+
+<br><br>
+<p align="center">
+  <img width="320" height="272" alt="lilos_showcase" src="https://github.com/user-attachments/assets/f4e7f254-841f-478a-a3f7-71e43c194f13" />
+</p>
+<br><br>
+
+<p align="center">As you can see we are highly optimised at 2 billion fps</p>
