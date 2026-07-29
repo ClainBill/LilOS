@@ -6,11 +6,13 @@
 #pragma once
 #include "app.h"
 #include <string>
+#include <vector>
+
 
 class Terminal : public App {
 public:
     std::string appName;
-    Terminal(int w, int h);
+    Terminal(int x, int y);
     ~Terminal() override;
 
     void update(float deltaTime) override;
@@ -20,9 +22,13 @@ public:
 private:
     // Terminal specific variables (cursor blink timer, text buffer, etc.)
     float cursorTimer;
-    int width;
-    int height;
+    float inputTimer = 0;
 
-    float fpsX = 200;
-    float fpsY = 220;
+    int lineCount = 0;
+    int startX = 5;
+    int startY = 5;
+
+    std::vector<std::string> consoleText;
+    int cursorX = startX, cursorY = startY;
+    bool showCursor = true;
 };

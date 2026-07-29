@@ -65,7 +65,7 @@ namespace {
             default:             return hal::Key::Undefined; // Fallback
         }
     }
-    std::queue<char> charQueue;
+    std::queue<hal::KeyEvent> charQueue;
 }
 
 
@@ -98,15 +98,18 @@ void hal:: updateInput() {
         }
 
         // For event based text input (text editors etc.)
-        if (e.type ==SDL_TEXTINPUT) {
-            charQueue.push(e.text.text[0]);
+        if (e.type == SDL_TEXTINPUT) {
+            hal::KeyEvent ke;
+            ke.ch = e.text.text[0];
+            ke.key = sdlKeyToHalKey(e.key.keysym.sym);
+            charQueue.push(ke);
         }
     }
 }
 
-bool hal::pollCharEvent(CharEvent& out){
+bool hal::pollCharEvent(KeyEvent& out){
     if (charQueue.empty()) return false;
-    out.ch = charQueue.front();
+    out = charQueue.front();
     charQueue.pop();
     return true;
 }
@@ -118,8 +121,6 @@ bool hal::isKeyPressed(hal::Key key){
 
 float hal::getDeltaTime() {return deltaTime;}
 bool hal::quitRequested() {return quit;}
-
-
 
 // create a cleanupSDL() void()
 void hal::shutdown(){

@@ -20,6 +20,6 @@ namespace hal {
 
     // bool pollKey(KeyEvent& out);
     struct CharEvent { char ch; };
-    bool pollCharEvent(CharEvent& out);  // For text editors
+    bool pollCharEvent(KeyEvent& out);  // For text editors
     float getDeltaTime();
 }

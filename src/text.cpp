@@ -33,3 +33,17 @@ void debugDrawCharSheet(int x, int y){
         x = ((x + 1 + TI83Font5x7.width) % (WIDTH - TI83Font5x7.width));
     }
 }
+
+void increaseCursor(int& x, int& y, const Font& font){
+    x = ((x + 1 + font.width) % (WIDTH - TI83Font5x7.width));
+    if (x >= 320 - font.width - 8){
+            y += font.height + 1;
+        }
+}
+
+void decreaseCursor(int& x, int& y, const Font& font){
+    x = ((x - 1 - font.width) % (WIDTH - TI83Font5x7.width));
+    if (x < 0){
+            y -= font.height + 1;
+        }
+}
